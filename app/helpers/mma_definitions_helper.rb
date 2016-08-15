@@ -1,0 +1,2 @@
+module MmaDefinitionsHelper
+end

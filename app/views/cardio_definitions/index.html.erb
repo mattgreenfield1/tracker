@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Cardio Definitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @cardio_definitions.each do |cardio_definition| %>
+      <tr>
+        <td><%= cardio_definition.name %></td>
+        <td><%= link_to 'Show', cardio_definition %></td>
+        <td><%= link_to 'Edit', edit_cardio_definition_path(cardio_definition) %></td>
+        <td><%= link_to 'Destroy', cardio_definition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Cardio definition', new_cardio_definition_path %>

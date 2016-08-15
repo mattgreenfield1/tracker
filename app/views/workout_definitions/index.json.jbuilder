@@ -1,0 +1,1 @@
+json.array! @workout_definitions, partial: 'workout_definitions/workout_definition', as: :workout_definition

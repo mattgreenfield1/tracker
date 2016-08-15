@@ -1,0 +1,33 @@
+<%= form_for(@workout_transaction) do |f| %>
+  <% if @workout_transaction.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@workout_transaction.errors.count, "error") %> prohibited this workout_transaction from being saved:</h2>
+
+      <ul>
+      <% @workout_transaction.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :details %><br>
+    <%= f.text_field :details %>
+  </div>
+  <div class="field">
+    <%= f.label :date %><br>
+    <%= f.date_select :date %>
+  </div>
+  <div class="field">
+    <%= f.label :time %><br>
+    <%= f.time_select :time %>
+  </div>
+  <div class="field">
+    <%= f.label :workout_definitions %><br>
+    <%= f.select :workout_definitions, WorkoutDefinition.all.collect{|w| [w.name, w.id]}, {:prompt => 'Select'}, {:multiple => true} %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

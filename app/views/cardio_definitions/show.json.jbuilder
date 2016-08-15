@@ -1,0 +1,1 @@
+json.partial! "cardio_definitions/cardio_definition", cardio_definition: @cardio_definition

@@ -1,0 +1,1 @@
+json.partial! "workout_definitions/workout_definition", workout_definition: @workout_definition

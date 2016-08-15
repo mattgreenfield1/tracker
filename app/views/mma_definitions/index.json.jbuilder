@@ -1,0 +1,1 @@
+json.array! @mma_definitions, partial: 'mma_definitions/mma_definition', as: :mma_definition

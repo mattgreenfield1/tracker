@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @workout_definition.name %>
+</p>
+
+<p>
+  <strong>Type:</strong>
+  <%= @workout_definition.type %>
+</p>
+
+<%= link_to 'Edit', edit_workout_definition_path(@workout_definition) %> |
+<%= link_to 'Back', workout_definitions_path %>

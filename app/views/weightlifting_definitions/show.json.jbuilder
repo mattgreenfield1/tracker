@@ -1,0 +1,1 @@
+json.partial! "weightlifting_definitions/weightlifting_definition", weightlifting_definition: @weightlifting_definition

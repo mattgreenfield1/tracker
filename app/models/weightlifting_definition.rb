@@ -1,0 +1,2 @@
+class WeightliftingDefinition < WorkoutDefinition
+end

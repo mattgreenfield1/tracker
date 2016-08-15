@@ -1,0 +1,1 @@
+json.partial! "mma_definitions/mma_definition", mma_definition: @mma_definition

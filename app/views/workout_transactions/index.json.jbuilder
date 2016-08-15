@@ -1,0 +1,1 @@
+json.array! @workout_transactions, partial: 'workout_transactions/workout_transaction', as: :workout_transaction

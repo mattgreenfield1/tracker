@@ -1,0 +1,2 @@
+class CardioDefinition < WorkoutDefinition
+end

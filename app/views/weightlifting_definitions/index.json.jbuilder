@@ -1,0 +1,1 @@
+json.array! @weightlifting_definitions, partial: 'weightlifting_definitions/weightlifting_definition', as: :weightlifting_definition

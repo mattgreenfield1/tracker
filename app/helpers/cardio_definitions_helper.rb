@@ -1,0 +1,2 @@
+module CardioDefinitionsHelper
+end

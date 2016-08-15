@@ -1,0 +1,1 @@
+json.array! @cardio_definitions, partial: 'cardio_definitions/cardio_definition', as: :cardio_definition

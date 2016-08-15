@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Workout Definitions</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Type</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @workout_definitions.each do |workout_definition| %>
+      <tr>
+        <td><%= workout_definition.name %></td>
+        <td><%= workout_definition.type %></td>
+        <td><%= link_to 'Show', workout_definition %></td>
+        <td><%= link_to 'Edit', edit_workout_definition_path(workout_definition) %></td>
+        <td><%= link_to 'Destroy', workout_definition, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Workout definition', new_workout_definition_path %>

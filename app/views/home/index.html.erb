@@ -1,0 +1,24 @@
+<div class="workout-defs">
+	<% @workout_defs.each do |type, defs| %>
+		<div class="workout-def">
+			<h1><%= type %></h1>
+			<ul>
+				<% defs.each do |d| %>
+					<li><span class="def-name"><%= d.name %></span></li>
+				<% end %>
+			</ul>
+		</div>
+	<% end %>
+</div>
+
+<div class="workout-txns">
+	<h1>Workouts</h1>
+	<% @workout_txns.each do |txn| %>
+		<div class="workout-txn">
+			<h1><%= txn.date %> <%= txn.time %></h1>
+			<% txn.workout_definitions.each do |d| %>
+				<%= d.name %>
+			<% end %>
+		</div>
+	<% end %>
+</div>
