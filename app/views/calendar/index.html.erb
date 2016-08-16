@@ -10,6 +10,35 @@ $(function(){
 
 		dayClick:function(){
 			
+		},
+		eventSources:[
+			{
+				events:[
+					{
+						title: 'Jiujitsu',
+						start: '2016-08-15T12:00:00',
+						details: 'All Levels',
+					}
+				],
+				color:'blue'
+			},
+			{
+				events:[
+					{
+						title: 'Biceps, Triceps',
+						start: '2016-08-15T12:00:00',
+					}
+				],
+				color:'green'
+			}
+		],
+		eventClick:function(event){
+			alert(event);
+		},
+		eventRender:function(event, element){
+			var details = $('<div class="event-tooltip">');
+			details.text(event.details);
+			$(element).append(details);
 		}
 	});
 });
