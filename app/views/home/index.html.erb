@@ -1,7 +1,7 @@
 <div class="workout-defs">
 	<% @workout_defs.each do |type, defs| %>
 		<div class="workout-def">
-			<h1><%= type %></h1>
+			<h1><%= type.gsub('Definition','') %></h1>
 			<ul>
 				<% defs.each do |d| %>
 					<li><span class="def-name"><%= d.name %></span></li>
