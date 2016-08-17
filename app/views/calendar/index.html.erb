@@ -51,6 +51,7 @@
 					{
 						title: '<%= t.date %>',
 						start: '<%= t.date %>',
+						details: '<%= t.workout_definitions.map{|d|d.name}.join(', ') %> <%= t.details %>'
 					},
 				<% end %>
 			],

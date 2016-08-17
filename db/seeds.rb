@@ -1,6 +1,6 @@
 WorkoutDefinition.delete_all
 
-muscle_groups = ['abs', 'back', 'biceps', 'calves', 'chest', 'triceps', 'legs', 'deadlifts']
+muscle_groups = ['abs', 'back', 'biceps', 'calves', 'chest', 'triceps', 'legs', 'deadlifts', 'shoulders']
 muscle_groups.each do |mg|
 	WorkoutDefinition.create(name: mg, type: 'WeightliftingDefinition')
 	puts "Created weightlifting definition #{mg}"

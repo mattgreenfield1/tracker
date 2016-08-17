@@ -34,8 +34,12 @@ class WorkoutTransactionsController < ApplicationController
     if workouts.count > 0
       # Grab all different muscle groups by getting the names of all the weight lifting defs
       mgs = WorkoutDefinition.where(type: 'WeightliftingDefinition').map{|w|w.name}
+      # Delete all other imported transactions
+      to_delete = WorkoutTransaction.where(is_imported: true)
+      to_delete.delete_all
       workouts.each do |w|
         txn = WorkoutTransaction.new
+        txn.is_imported = true
         date_regex = /([\d]+\/[\d]+):.*/
         # If we match the pattern like "8/16: otherstuff", then grab the 8/16 part and set it as the date
         if w.match(date_regex)
@@ -45,16 +49,19 @@ class WorkoutTransactionsController < ApplicationController
         end
         txn.save!
         # Grab the different areas (e.g. 'back, abs')
-        areas = w.split(/,[\s]*/)
+        areas = w.gsub(/[\d]+\/[\d]+:[\s]*/,'').split(/,[\s]*/)
         rejected_areas = areas.clone
         areas.reject!{|a| !(mgs.include?(a))}
         rejected_areas.reject!{|a| mgs.include?(a)}
-        puts "Rejected areas: #{rejected_areas}"
+        unless rejected_areas.empty?
+          txn.details = "(#{rejected_areas.join(', ')})"
+        end
         # Initialize workout maps if nil
         areas.each do |a|
           wdef = WorkoutDefinition.where(name: a).first
           txn.workout_maps.create(workout_transaction: txn, workout_definition: wdef)
         end
+        txn.save!
       end
     end
     redirect_to '/calendar'
