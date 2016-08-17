@@ -1,0 +1,5 @@
+<%= csrf_meta_tags %>
+<%= form_tag '/parse' do %>
+	<%= text_area_tag :input %>
+	<%= submit_tag 'Submit' %>
+<% end %>
