@@ -1,5 +1,6 @@
 Rails.application.routes.draw do
 
+  resources :workout_classes
   root 'home#index'
 
   get '/calendar', to: 'calendar#index'

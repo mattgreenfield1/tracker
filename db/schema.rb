@@ -11,13 +11,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160816045340) do
+ActiveRecord::Schema.define(version: 20160817025211) do
 
   create_table "calendars", force: :cascade do |t|
     t.string   "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "workout_classes", force: :cascade do |t|
+    t.string   "details"
+    t.integer  "workout_definition_id"
+    t.string   "time"
+    t.integer  "day"
+    t.datetime "created_at",            null: false
+    t.datetime "updated_at",            null: false
+  end
+
+  add_index "workout_classes", ["workout_definition_id"], name: "index_workout_classes_on_workout_definition_id"
 
   create_table "workout_definitions", force: :cascade do |t|
     t.string   "name"

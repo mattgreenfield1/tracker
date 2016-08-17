@@ -1,47 +1,87 @@
+
 <%#= javascript_include_tag "https://code.jquery.com/jquery-2.2.4.min.js" %>
 <%= javascript_include_tag "https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.14.1/moment.min.js" %>
 <%= javascript_include_tag "http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.js" %>
 <%= stylesheet_link_tag "http://cdnjs.cloudflare.com/ajax/libs/fullcalendar/2.9.1/fullcalendar.min.css" %>
 
 <script type="text/javascript">
-$(function(){
-	$('#calendar').fullCalendar({
-		//weekends: false
+	var workoutClasses;
+	var workouts;
+	var showClasses = true;
+	var showWorkouts = true;
 
-		dayClick:function(){
-			
-		},
-		eventSources:[
-			{
-				events:[
-					{
-						title: 'Jiujitsu',
-						start: '2016-08-15T12:00:00',
-						details: 'All Levels',
-					}
-				],
-				color:'blue'
-			},
-			{
-				events:[
-					{
-						title: 'Biceps, Triceps',
-						start: '2016-08-15T12:00:00',
-					}
-				],
-				color:'green'
-			}
-		],
-		eventClick:function(event){
-			alert(event);
-		},
-		eventRender:function(event, element){
-			var details = $('<div class="event-tooltip">');
-			details.text(event.details);
-			$(element).append(details);
+	function toggleClasses(){
+		if (showClasses){
+			$('#calendar').fullCalendar('removeEventSource',workoutClasses);
+			showClasses=false;
+		}else{
+			$('#calendar').fullCalendar('addEventSource',workoutClasses);
+			showClasses=true;
 		}
-	});
-});
-</script>
+	}
 
+	function toggleWorkouts(){
+		if (showWorkouts){
+			$('#calendar').fullCalendar('removeEventSource',workouts);
+			showWorkouts=false;
+		}else{
+			$('#calendar').fullCalendar('addEventSource',workouts);
+			showWorkouts=true;
+		}
+	}
+
+	$(function(){
+		workoutClasses = {
+			events:[
+				<% @classes.each do |c| %>
+					{
+						title: '<%= c.workout_definition.name %>',
+						start: '<%= c.time %>',
+						details: '<%= c.details %>',
+						dow: [<%= c.day %>],
+						color:'<%= (c.workout_definition.name == "boxing")?"#2196f3":"#4caf50" %>'
+					},
+				<% end %>
+			]
+		};
+
+		workouts = {
+			events:[
+				<% @txns.each do |t| %>
+					{
+						title: '<%= t.date %>',
+						start: '<%= t.date %>',
+					},
+				<% end %>
+			],
+			color:'#ef5350'
+		};
+
+		$('#calendar').fullCalendar({
+			//weekends: false
+
+			dayClick:function(){
+				
+			},
+			header:{
+				left: 'title',
+				center: '',
+				right: 'month basicWeek basicDay today prev,next'
+			},
+			eventSources:[workoutClasses,workouts],
+			eventClick:function(event){
+				alert(event);
+			},
+			eventRender:function(event, element){
+				var details = $('<div class="event-tooltip">');
+				details.text(event.details);
+				$(element).append(details);
+			}
+		});
+	});
+</script>
+<div id="control-panel">
+	<button type="button" onclick="toggleClasses()">MMA Classes</button>
+	<button type="button" onclick="toggleWorkouts()">Workouts</button>
+</div>
 <div id="calendar"></div>

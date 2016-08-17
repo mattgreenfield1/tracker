@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Details:</strong>
+  <%= @workout_class.details %>
+</p>
+
+<p>
+  <strong>Workout definition:</strong>
+  <%= @workout_class.workout_definition %>
+</p>
+
+<p>
+  <strong>Time:</strong>
+  <%= @workout_class.time %>
+</p>
+
+<p>
+  <strong>Day:</strong>
+  <%= @workout_class.day %>
+</p>
+
+<%= link_to 'Edit', edit_workout_class_path(@workout_class) %> |
+<%= link_to 'Back', workout_classes_path %>
