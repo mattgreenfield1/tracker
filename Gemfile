@@ -34,6 +34,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 group :development, :test do
   gem 'pry'
   gem 'pry-byebug'
+  # breaking down time
+  gem 'rack-mini-profiler'
+  # Determining n+1 issues
+  gem 'bullet'
 end
 
 group :development do
