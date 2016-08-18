@@ -17,7 +17,7 @@
   </div>
   <div class="field">
     <%= f.label :date %><br>
-    <%= f.date_select :date %>
+    <%= f.date_select :date, {:default => DateTime.now.to_date}%>
   </div>
   <div class="field">
     <%= f.label :time %><br>
@@ -25,7 +25,7 @@
   </div>
   <div class="field">
     <%= f.label :workout_definitions %><br>
-    <%= f.select :workout_definitions, WorkoutDefinition.all.collect{|w| [w.name, w.id]}, {:prompt => 'Select'}, {:multiple => true} %>
+    <%= f.select :workout_definitions, options_for_select(WorkoutDefinition.all.collect{|w| [w.name, w.id]}, selected: ((@workout_def.nil?)?(0):(@workout_def.id))), {:prompt => ''}, {:multiple => true} %>
   </div>
   <div class="actions">
     <%= f.submit %>

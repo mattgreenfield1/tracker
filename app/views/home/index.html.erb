@@ -4,7 +4,12 @@
 			<h1><%= type.gsub('Definition','') %></h1>
 			<ul>
 				<% defs.each do |d| %>
-					<li><span class="def-name"><%= d.name %> (days since: <%= days_since(d) %>)</span></li>
+					<li>
+						<div class="def-name"><%= d.name %> (days since: <%= days_since(d) %>)</div>
+						<div class="add-link">
+							<%= link_to 'Add', new_workout_transaction_path(:workout_def => d) %>
+						</div>
+					</li>
 				<% end %>
 			</ul>
 		</div>

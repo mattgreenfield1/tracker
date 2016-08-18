@@ -15,6 +15,10 @@ class WorkoutTransactionsController < ApplicationController
   # GET /workout_transactions/new
   def new
     @workout_transaction = WorkoutTransaction.new
+    unless params[:workout_def].nil?
+      @workout_def = WorkoutDefinition.find(params[:workout_def])
+      @workout_transaction.workout_definitions.push(@workout_def)
+    end
   end
 
   # GET /workout_transactions/1/edit
@@ -33,7 +37,7 @@ class WorkoutTransactionsController < ApplicationController
     workouts = input.split(/(\r\n)|(\n)/).reject{|l|l.match /^\D/}
     if workouts.count > 0
       # Grab all different muscle groups by getting the names of all the weight lifting defs
-      mgs = WorkoutDefinition.where(type: 'WeightliftingDefinition').map{|w|w.name}
+      mgs = WorkoutDefinition.all.map{|w|w.name}
       # Delete all other imported transactions
       to_delete = WorkoutTransaction.where(is_imported: true)
       to_delete.delete_all
